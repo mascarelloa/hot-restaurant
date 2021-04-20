@@ -44,15 +44,15 @@ app.get('/api/reservations', (req, res) => res.json(reservations));
 app.get('/api/waitlist', (req, res) => res.json(waitList));
 
 // Checks
-app.get('/api/reservations', (req, res) => {
+// app.get('/api/reservations', (req, res) => {
   
-    if (reservations.length <= 5) {
-      return res.json(false);
-    } else {
-    return res.json(true);
-    }
+//     if (reservations.length <= 5) {
+//       return res.json(false);
+//     } else {
+//     return res.json(true);
+//     }
 
-});
+// });
 
 // Create New Characters - takes in JSON input
 app.post('/api/reservations', (req, res) => {
@@ -66,8 +66,16 @@ app.post('/api/reservations', (req, res) => {
 
   console.log (newReservation);
 
-  reservations.push (newReservation);
-  res.json (newReservation);
+  if (reservations.length <= 5) {
+      return res.json(false);
+      reservations.push (newReservation);
+      res.json (newReservation);
+  } else {
+      return res.json(true);
+      waitList.push(newReservation);
+      res.json (newReservation);
+        }
+  
 });
 
 // Starts the server to begin listening
