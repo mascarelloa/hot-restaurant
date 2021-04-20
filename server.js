@@ -55,20 +55,21 @@ app.get('/api/reservations', (req, res) => {
 });
 
 // Create New Characters - takes in JSON input
-app.post('/api/characters', (req, res) => {
+app.post('/api/reservations', (req, res) => {
   // req.body hosts is equal to the JSON post sent from the user
   // This works because of our body parsing middleware
-  const newCharacter = req.body;
+  const newReservation = req.body;
 
-  // Using a RegEx Pattern to remove spaces from newCharacter
+  // Using a RegEx Pattern to remove spaces from newReservation
   // You can read more about RegEx Patterns later https://www.regexbuddy.com/regex.html
-  newCharacter.routeName = newCharacter.name.replace(/\s+/g, '').toLowerCase();
-  console.log(newCharacter);
+ newReservation.routeName = newReservation.customerName.replace(/\s+/g, '').toLowerCase();
 
-  characters.push(newCharacter);
-  res.json(newCharacter);
+  console.log (newReservation);
+
+  reservations.push (newReservation);
+  res.json (newReservation);
 });
 
 // Starts the server to begin listening
 
-app.listen(PORT, () => console.log(`App listening on PORT ${PORT}`));
+app.listen(PORT, () => console.log(`App listening on PORT http://localhost:${PORT}`));
